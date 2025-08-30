@@ -1,0 +1,18 @@
+<div class="p-2">
+  <h5 class="mb-3 text-primary">Last Transactions</h5>
+  <div class="transaction-wrapper">
+    <div class="transaction border-bottom py-2" *ngFor="let transaction of lastTransactions">
+      <div class="d-flex justify-content-between">
+        <div>
+          <div class="text-muted small">
+            {{ transaction.categoryName }} • {{ transaction.walletName }}
+          </div>
+        </div>
+        <div class="text-end">
+          <div class="fw-bold">{{ transaction.amount | currency }}</div>
+          <div class="text-muted small">{{ transaction.createDate | date: 'shortDate' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

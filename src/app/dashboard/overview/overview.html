@@ -1,0 +1,38 @@
+<div class="widget-container">
+  <div class="widget green">
+    <div class="icon">
+      <i class="fa-solid fa-sort-up"></i>
+    </div>
+    <div class="value">
+      <div class="top">{{ monthlyReport[0]?.totalIncome || 0}}</div>
+      <div class="bottom">Income</div>
+    </div>
+  </div>
+  <div class="widget red">
+    <div class="icon">
+      <i class="fa-solid fa-sort-down"></i>
+    </div>
+    <div class="value">
+      <div class="top">{{ monthlyReport[0]?.totalExpenses || 0}}</div>
+      <div class="bottom">Expense</div>
+    </div>
+  </div>
+  <div class="widget blue">
+    <div class="icon">
+      <i class="fa-solid fa-money-bill"></i>
+    </div>
+    <div class="value">
+      <div class="top">{{ monthlyReport[0]?.balance || 0}}</div>
+      <div class="bottom">Balance</div>
+    </div>
+  </div>
+  <div class="widget yellow">
+    <div class="icon">
+      <i class="fa-solid fa-money-bill"></i>
+    </div>
+    <div class="value">
+      <div class="top">{{ totalSpent || 0}}</div>
+      <div class="bottom">Total Spendings This Year</div>
+    </div>
+  </div>
+</div>

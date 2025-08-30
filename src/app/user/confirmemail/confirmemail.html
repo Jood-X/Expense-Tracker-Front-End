@@ -1,0 +1,29 @@
+<div class="mb-4">
+    <h2 class="registertext fw-bold">
+        Email Confirmation
+    </h2>
+    <div>Don't have an account?
+        <a routerLink="/signup" class="registertext text-decoration-none fw-meduim d-inlin-block">
+            Sign up 
+        </a>
+    </div>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input formControlName="email" type="hidden" />
+  
+  <div class="mb-3">
+    <label for="code" class="form-label">Confirmation Code</label>
+    <input
+      id="code"
+      type="text"
+      class="form-control"
+      formControlName="code"
+      [ngClass]="{ 'is-invalid': hasDisplayError('code') }"
+    />
+    <div *ngIf="hasDisplayError('code')" class="invalid-feedback">
+      Code is required
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Confirm</button>
+</form>

@@ -1,0 +1,33 @@
+<form class="p-4" (ngSubmit)="onSave()">
+    <h4 class="mb-4 fw-semibold text-center">Add Transaction</h4>
+
+
+    <div class="mb-4">
+        <label class="form-label">Category</label>
+        <select [(ngModel)]="transaction.categoryId" name="categoryId" class="form-select form-select-lg" required>
+            <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+        </select>
+    </div>
+
+    <div class="mb-4">
+        <label class="form-label">Wallet</label>
+        <select [(ngModel)]="transaction.walletId" name="walletId" class="form-select form-select-lg" required>
+            <option *ngFor="let wallet of wallets" [value]="wallet.id">{{ wallet.name }}</option>
+        </select>
+    </div>
+
+    <div class="mb-4">
+        <label class="form-label">Amount</label>
+        <input [(ngModel)]="transaction.amount" name="amount" class="form-control form-control-lg" required />
+    </div>
+
+    <div class="mb-4">
+        <label class="form-label">Note</label>
+        <input [(ngModel)]="transaction.note" name="startDate" class="form-control form-control-lg" />
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-outline-secondary me-2" (click)="onCancel()" type="button">Cancel</button>
+        <button class="btn btn-success" type="submit">Save</button>
+    </div>
+</form>

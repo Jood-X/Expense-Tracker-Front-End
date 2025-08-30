@@ -1,0 +1,7 @@
+<router-outlet *ngIf="!isLoggedIn()"></router-outlet>
+<ng-container *ngIf="isLoggedIn()">
+  <app-sidebar *ngIf="showSidebar" [isSidebarCollapsed]="isSidebarCollapsed()"
+    (changeSidebarState)="changeSidebarState($event)"></app-sidebar>
+  <app-main [isSidebarCollapsed]="isSidebarCollapsed()" 
+    [screenWidth]="screenWidth()"></app-main>
+</ng-container>

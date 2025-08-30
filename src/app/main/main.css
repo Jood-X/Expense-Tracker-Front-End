@@ -1,0 +1,44 @@
+.body {
+  width: calc(100% - 5rem);
+  margin-left: 5rem;
+  z-index: 0;
+  position: relative;
+  top: 0;
+  transition: all 0.5s ease;
+  background: #ffffff;
+  padding: 0;
+  height: 100%;
+  min-height: 100vh;
+  height: auto;
+}
+
+.body-trimmed {
+  width: calc(100% - 16.5625rem);
+  margin-left: 16.5625rem;
+}
+
+.body-md-screen {
+  width: calc(100% - 5rem);
+  margin-left: 5rem;
+}
+.main-wrapper {
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.main-wrapper.no-sidebar {
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+}
+mat-paginator {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.no-sidebar-body {
+  width: 100% !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+

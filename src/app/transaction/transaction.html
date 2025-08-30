@@ -1,0 +1,96 @@
+<div class="bg-light text-center py-4 rounded shadow-sm mb-4">
+  <h1 class="display-6 fw-bold text-primary">My Transactions</h1>
+</div>
+
+<div class=" mb-4">
+  <div class="mt-3 mx-4 shadow-sm p-3">
+    <div class="row gy-2 gx-3 align-items-end">
+      <div class="col-md-4">
+        <label class="form-label">Keyword</label>
+        <input type="text" class="form-control" placeholder="Search by note or name" [(ngModel)]="filter.keyword"
+          name="keyword" (keydown.enter)="applyFilter()" />
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Category</label>
+        <select class="form-select" [(ngModel)]="filter.categoryId" name="categoryId" (keydown.enter)="applyFilter()">
+          <option value="">All Categories</option>
+          <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Wallet</label>
+        <select class="form-select" [(ngModel)]="filter.walletId" name="walletId" (keydown.enter)="applyFilter()">
+          <option value="">All Wallets</option>
+          <option *ngFor="let wal of wallets" [value]="wal.id">{{ wal.name }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">From Date</label>
+        <input type="date" class="form-control" [(ngModel)]="filter.dateFrom" name="dateFrom"
+          (keydown.enter)="applyFilter()" />
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">To Date</label>
+        <input type="date" class="form-control" [(ngModel)]="filter.dateTo" name="dateTo"
+          (keydown.enter)="applyFilter()" />
+      </div>
+    </div>
+
+    <div class="mt-3 d-flex flex-wrap justify-content-end gap-2">
+      <button class="btn btn-outline-primary" (click)="applyFilter()">
+        <i class="fas fa-search me-1"></i> Filter
+      </button>
+      <button class="btn btn-outline-secondary" (click)="resetFilter()">
+        <i class="fas fa-eraser me-1"></i> Reset
+      </button>
+      <button class="btn btn-outline-success" (click)="openAddDialog()">
+        <i class="fas fa-plus me-1"></i> Add Transaction
+      </button>
+      <button class="btn btn-outline-success px-3" (click)="exportReport()">
+        <i class="fas fa-file-download me-1"></i> Download Report
+      </button>
+    </div>
+  </div>
+</div>
+
+<div>
+  <ul class="list-group mt-3 mx-4">
+    <li *ngFor="let wd of pagedTransactions"
+      class="list-group-item shadow-sm d-flex justify-content-between align-items-center mb-2 rounded border px-4 py-3">
+      <div class="flex-grow-1">
+        <h6 class="mb-1 text-dark">{{ wd.name }}</h6>
+        <p class="mb-0 text-muted">Category: {{ wd.categoryName }}</p>
+        <p class="mb-0 text-muted">Wallet: {{ wd.walletName}}</p>
+        <p class="mb-0 text-muted">Amount: <strong>{{ wd.amount}}</strong></p>
+      </div>
+      <div class="text-end">
+        <button class="btn btn-sm btn-outline-danger me-2" (click)="openDeleteDialog(wd)">
+          <i class="fas fa-trash"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-warning" (click)="openUpdateDialog(wd)">
+          <i class="fas fa-pen"></i>
+        </button>
+      </div>
+    </li>
+  </ul>
+
+  <nav *ngIf="totalPages >= 1" class="mt-3">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="changePage(currentPage - 1)">Previous</button>
+      </li>
+
+      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+        [class.active]="currentPage === (i + 1)">
+        <button class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</button>
+      </li>
+
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <button class="page-link" (click)="changePage(currentPage + 1)">Next</button>
+      </li>
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,60 @@
+<h4 class="mb-4 mt-4 fw-semibold text-center">Add Recurring</h4>
+<mat-dialog-content style="max-height: 70vh; overflow: auto;">
+    <form class="p-4" (ngSubmit)="onSave()">
+
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input [(ngModel)]="recurring.name" name="name" class="form-control form-control-lg" required />
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Category</label>
+            <select [(ngModel)]="recurring.categoryId" name="categoryName" class="form-select form-select-lg" required>
+                <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Wallet</label>
+            <select [(ngModel)]="recurring.walletId" name="walletName" class="form-select form-select-lg" required>
+                <option *ngFor="let wallet of wallets" [value]="wallet.id">{{ wallet.name }}</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Amount</label>
+            <input [(ngModel)]="recurring.amount" name="amount" class="form-control form-control-lg" required />
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Start Date</label>
+            <input type="date" [(ngModel)]="recurring.startDate" name="startDate" class="form-control form-control-lg" required />
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">End Date</label>
+            <input type="date" [(ngModel)]="recurring.endDate" name="endDate" class="form-control form-control-lg" required />
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Repeat Interval</label>
+            <select [(ngModel)]="recurring.repeatInterval" name="repeatInterval" class="form-select form-select-lg"
+                required>
+                <option value="Hour">Hourly</option>
+                <option value="Day">Daily</option>
+                <option value="Week">Weekly</option>
+                <option value="Month">Monthly</option>
+            </select>
+        </div>
+        
+        <div class="mb-4">
+            <label class="form-label">Repeat Every</label>
+            <input [(ngModel)]="recurring.intervalValue" name="intervalValue" type="number" class="form-control form-control-lg" required>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-outline-secondary me-2" (click)="onCancel()" type="button">Cancel</button>
+            <button class="btn btn-success" type="submit">Save</button>
+        </div>
+    </form>
+</mat-dialog-content>

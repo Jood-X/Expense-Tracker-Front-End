@@ -1,0 +1,66 @@
+<div class="bg-light text-center py-4 rounded shadow-sm mb-4">
+  <h1 class="display-6 fw-bold text-primary">My Wallets</h1>
+</div>
+<div class="mx-4">
+  <div class="d-flex flex-wrap align-items-center mb-1 gap-2">
+    <div class="flex-grow-1 position-relative">
+      <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"
+        style="cursor: pointer;" (click)="search()"></i>
+
+      <input type="text" class="form-control ps-5 pe-5" placeholder="Search wallets" [(ngModel)]="searchTerm"
+        name="searchTerm" (keyup.enter)="search()" />
+
+      <i *ngIf="searchTerm"
+        class="fas fa-solid fa-xmark position-absolute top-50 end-0 translate-middle-y me-3 text-muted"
+        style="cursor: pointer;" (click)="searchTerm=''; loadPagedWallets(1)"></i>
+    </div>
+
+    <div>
+      <button class="btn btn-outline-primary px-3" (click)="openAddDialog()">
+        <i class="fas fa-plus me-1"></i> Add Wallet
+      </button>
+    </div>
+    
+    <div>
+      <button class="btn btn-outline-success px-3" (click)="exportReport()">
+        <i class="fas fa-file-download me-1"></i> Download Report
+      </button>
+    </div>
+  </div>
+  <div>
+    <ul class="list-group mt-3">
+      <li *ngFor="let wd of pagedWallets"
+        class="list-group-item shadow-sm d-flex justify-content-between align-items-center mb-2 rounded border px-4 py-3">
+        <div class="flex-grow-1">
+          <h6 class="mb-1 text-dark">{{ wd.name }}</h6>
+          <p class="mb-0 text-muted">Balance: <strong>{{ wd.balance | currency:'USD' }}</strong></p>
+        </div>
+        <div class="text-end">
+          <button class="btn btn-sm btn-outline-danger me-2" (click)="openDeleteDialog(wd)">
+            <i class="fas fa-trash"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-warning" (click)="openUpdateDialog(wd)">
+            <i class="fas fa-pen"></i>
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <nav *ngIf="totalPages >= 1" class="mt-3">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="changePage(currentPage - 1)">Previous</button>
+        </li>
+
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+          [class.active]="currentPage === (i + 1)">
+          <button class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</button>
+        </li>
+
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="page-link" (click)="changePage(currentPage + 1)">Next</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

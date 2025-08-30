@@ -1,0 +1,80 @@
+.widget-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.widget {
+  flex: 1 1 300px;
+  max-width: calc(25% - 20px);
+  min-width: 220px;
+  height: 175px;
+  background-color: #fff;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px #939393;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+
+  &.green {
+    background-color: rgb(4, 67, 66);
+  }
+
+  &.yellow {
+    background-color: rgb(237, 158, 32);
+  }
+
+  &.red {
+    background-color: rgb(126, 5, 5);
+  }
+
+  &.blue {
+    background-color: rgb(105, 32, 251);
+  }
+
+  .icon {
+    width: 100px;
+    font-size: 60px;
+    text-align: center;
+
+    @media only screen and (max-width: 1200px) {
+      font-size: 45px;
+    }
+  }
+
+  .value {
+    text-align: center;
+    width: 175px;
+
+    .top {
+      font-size: 30px;
+
+      @media only screen and (max-width: 1200px) {
+        font-size: 26px;
+      }
+    }
+
+    .bottom {
+      font-size: 20px;
+      margin-top: 10px;
+
+      @media only screen and (max-width: 1200px) {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .widget {
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .widget {
+    max-width: 100%;
+  }
+}

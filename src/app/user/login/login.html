@@ -1,0 +1,35 @@
+<div class="mb-4">
+    <h2 class="registertext fw-bold">
+        Sign In
+    </h2>
+    <div>Don't have an account?
+        <a routerLink="/signup" href="/signup" class="registertext text-decoration-none fw-meduim d-inlin-block">
+            Sign up 
+        </a>
+    </div>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <input class="form-control bg-body-secondary"
+        placeholder="Email" formControlName="email" />
+        <div class="error-feedback" *ngIf="hasDisplayError('email')">
+            <div *ngIf="form.controls.email.hasError('required')">
+                Please enter your Email address.
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <input class="form-control bg-body-secondary"
+        placeholder="Password" formControlName="password" type="password"/>
+        <div class="error-feedback" *ngIf="hasDisplayError('password')">
+            <div *ngIf="form.controls.password.hasError('required')">
+                Please enter your password.
+            </div>
+        </div>
+    </div>
+    <div class="mb-4">
+        <button type="submit" class="registeration text-white btn w-100 rounded-3">
+            Sign In
+        </button>
+    </div>
+</form>
